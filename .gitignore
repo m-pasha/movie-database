@@ -1,6 +1,7 @@
 .idea/
 app/migrations/
 venv/
+settings/local.py
 
 .pytest_cache
 *.env
