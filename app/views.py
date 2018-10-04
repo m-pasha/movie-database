@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect
@@ -53,23 +54,35 @@ class FavouriteView(View):
         list_movie = Movie.objects.filter(user=request.user).order_by(
             "-pk"
         )
-        return render(request, "favourite.html", {"list_movie": list_movie})
+        paginator = Paginator(list_movie, 5)
+        page = request.GET.get('page', 1)
+        try:
+            movie = paginator.page(page)
+        except PageNotAnInteger:
+            movie = paginator.page(1)
+        except EmptyPage:
+            movie = paginator.page(paginator.num_pages)
+
+        return render(request, "favourite.html", {"list_movie": movie})
 
     def post(self, request):
         data = JSONParser().parse(request)
-        Movie.objects.create(
-            user=request.user,
-            title=data["title"],
-            year=data["year"],
-            actors=data["actors"],
-            awards=data["awards"],
-            country=data["country"],
-            dvd=data["dvd"],
-            director=data["director"],
-            genre=data["genre"],
-            plot=data["plot"],
-            released=data["released"],
-            runtime=data["runtime"],
-            poster=data["poster"],
-        )
-        return HttpResponse(status=201)
+        try:
+            Movie.objects.create(
+                user=request.user,
+                title=data["title"],
+                year=data["year"],
+                actors=data["actors"],
+                awards=data["awards"],
+                country=data["country"],
+                dvd=data["dvd"],
+                director=data["director"],
+                genre=data["genre"],
+                plot=data["plot"],
+                released=data["released"],
+                runtime=data["runtime"],
+                poster=data["poster"],
+            )
+            return HttpResponse(status=201)
+        except Exception:
+            return HttpResponse(status=403)
