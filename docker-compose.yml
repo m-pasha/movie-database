@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+  web:
+    build: .
+    expose:
+      - "80"
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/docker/Movie-Database
+    ports:
+      - "80:8000"
+    depends_on:
+      - db
