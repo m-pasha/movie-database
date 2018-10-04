@@ -10,19 +10,21 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center"><a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" class="rounded float-left" alt="Home page"></a>
-            <hr>
+            <div class="col-md-12"><a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" class="rounded mx-auto d-block" alt="Home page"></a>
             </div>
             <div class="col-md-4 offset-md-4 text-center">
-                <form method="post" action="{% url 'login' %}">
-                    {% csrf_token %}
-                    <input class="form-control form-control-lg" name="username" type="text" placeholder="Username" required><br>
-                    <input class="form-control form-control-lg" name="password" type="password" placeholder="Password" required><br>
-                    {% if message %}
-                    <div class="alert alert-danger" role="alert">{{ message }}</div>
-                    {% endif %}
-                    <button type="submit" class="btn btn-success">Log In</button><br>
-                </form>
+                <div class="jumbotron">
+                    <h1 class="display-4">Log In</h1>
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <input class="form-control form-control-lg" name="username" type="text" placeholder="Username" required><br>
+                        <input class="form-control form-control-lg" name="password" type="password" placeholder="Password" required><br>
+                        {% if message %}
+                        <div class="alert alert-danger" role="alert">{{ message }}</div>
+                        {% endif %}
+                        <button type="submit" class="btn btn-success">Log In</button><br>
+                    </form>
+                </div>
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-12 text-center">

@@ -19,12 +19,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from app.views import HomeView, LoginView
+from app.views import HomeView, LoginView, SearchView, FavouriteView
 
 urlpatterns = [
 
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('search/', SearchView.as_view(), name='search'),
+    path('favourite/', FavouriteView.as_view(), name='favourite'),
+
     path('admin/', admin.site.urls),
 
     path('', HomeView.as_view(), name='home'),

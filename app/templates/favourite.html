@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Movie Database - Favourite{% endblock title %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lead">
+                Your favourite movie.
+            </p>
+            <img src="{% static  'img/img_01.png' %}" class="img-thumbnail">
+            <hr>
+
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Movie Database - Search{% endblock title %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <input class="form-control" id="titleMovie" name="title" type="text" placeholder="Title" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" id="yearMovie" name="type" type="text" placeholder="Year">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <select class="form-control" id="typeMovie">
+                            <option value=""></option>
+                            <option value="movie">Movie</option>
+                            <option value="series">Series</option>
+                            <option value="episode">Episode</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <button class="btn btn-success" onclick="javascript:searchFilm()">Search</button><br>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-12">
+            <div id="searchMsg" class="alert alert-danger"></div>
+        </div>
+
+        <div class="col-md-12" id="resultMovie">
+            <h3>Search result:</h3>
+            <div class="row">
+                <div class="col-md-4">
+
+                    <img src="" id="Poster">
+                </div>
+                <div class="col-md-6">
+                    <div><strong>Title: </strong><span id="Title" class="strong"></span></div>
+                    <div><strong>Year: </strong><span id="Year"></span></div>
+                    <div><strong>Actors: </strong><span id="Actors"></span></div>
+                    <div><strong>Awards: </strong><span id="Awards"></span></div>
+                    <div><strong>Country: </strong><span id="Country"></span></div>
+                    <div><strong>DVD: </strong><span id="DVD"></span></div>
+                    <div><strong>Director: </strong><span id="Director"></span></div>
+                    <div><strong>Genre: </strong><span id="Genre"></span></div>
+                    <div><strong>Plot: </strong><span id="Plot"></span></div>
+                    <div><strong>Released: </strong><span id="Released"></span></div>
+                    <div><strong>Runtime: </strong><span id="Runtime"></span></div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-warning" onclick="javascript:addFavourite()">+ Favourite</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock body %}
+{% block load_script %}
+    <script src="{% static 'js/search.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+    <script type="text/javascript">
+        oninit();
+    </script>
+{% endblock load_script %}
