@@ -16,7 +16,7 @@ bash:
 stop:
 	docker-compose stop
 
-clear:
+clean:
 	docker stop moviedatabase_web_1
 	docker stop moviedatabase_db_1
 	docker rm moviedatabase_web_1
