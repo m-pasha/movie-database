@@ -1,10 +1,12 @@
 # Movie Database
 
 ### Description
-Simple website provided by [http://www.omdbapi.com/](http://www.omdbapi.com/). User can logged and save result to 
+Simple website provided by API [http://www.omdbapi.com/](http://www.omdbapi.com/). User can logged and save result to 
 favourite list.
 
-In project used Python 3.
+In backend used _Python 3 with Django 2_. In front part used:
+_html + css(bootstrap) + jquery_
+
 
 ## Quick local start
 
@@ -20,7 +22,7 @@ python manage.py runserver
 
 ### Urls
 * `http://127.0.0.1:8000/` - home page
+* `login/` - login page
+* `search/` - search movie page
+* `favourite/` - favourite movie page
 * `admin/` - Django-admin page
-
-## API URLs:
-* `api/` - API

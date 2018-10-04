@@ -36,7 +36,7 @@ class LoginView(View):
                 message = "Your account is inactive. Please activate your account."
                 return render(request, "registration/login.html", {"message": message})
         except User.DoesNotExist:
-            message = "We cannot find your account. Please Sign up first."
+            message = "We cannot find your account."
             return render(request, "registration/login.html", {"message": message})
 
 
@@ -50,7 +50,10 @@ class SearchView(View):
 @method_decorator(login_required, name='dispatch')
 class FavouriteView(View):
     def get(self, request):
-        return render(request, "favourite.html")
+        list_movie = Movie.objects.filter(user=request.user).order_by(
+            "-pk"
+        )
+        return render(request, "favourite.html", {"list_movie": list_movie})
 
     def post(self, request):
         data = JSONParser().parse(request)

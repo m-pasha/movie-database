@@ -30,6 +30,7 @@ function searchFilm() {
                 $('#searchMsg').hide();
                 $('#resultMovie').show();
             } else {
+                $('#resultMovie').hide();
                 $('#searchMsg').show()
                 $('#searchMsg').text(data.Error);
             }

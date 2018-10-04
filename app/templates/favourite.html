@@ -6,11 +6,41 @@
     <div class="row">
         <div class="col-md-12">
             <p class="lead">
-                Your favourite movie.
+                Your favourite movie list.
             </p>
-            <img src="{% static  'img/img_01.png' %}" class="img-thumbnail">
             <hr>
-
         </div>
+        {% for m in list_movie %}
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="{{ m.poster }}">
+                </div>
+                <div class="col-md-7">
+                    <div><strong>Title: </strong><span>{{ m.title }}</span></div>
+                    <div><strong>Year: </strong><span>{{ m.year }}</span></div>
+                    <div><strong>Actors: </strong><span>{{ m.actors }}</span></div>
+                    <div><strong>Awards: </strong><span>{{ m.awards }}</span></div>
+                    <div><strong>Country: </strong><span>{{ m.country }}</span></div>
+                    <div><strong>DVD: </strong><span>{{ m.dvd }}</span></div>
+                    <div><strong>Director: </strong><span>{{ m.director }}</span></div>
+                    <div><strong>Genre: </strong><span>{{ m.genre }}</span></div>
+                    <div><strong>Plot: </strong><span>{{ m.plot }}</span></div>
+                    <div><strong>Released: </strong><span>{{ m.released }}</span></div>
+                    <div><strong>Runtime: </strong><span>{{ m.runtime }}</span></div>
+                </div>
+                <!--<div class="col-md-2">-->
+                    <!--<button class="btn btn-warning" onclick="javascript:">- Remove</button>-->
+                <!--</div>-->
+
+            </div>
+            <br><hr>
+        </div>
+        {% endfor %}
+
+
+
+
+
     </div>
 {% endblock body %}
