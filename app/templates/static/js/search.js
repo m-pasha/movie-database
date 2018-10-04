@@ -1,8 +1,10 @@
 function oninit() {
     $('#searchMsg').hide();
     $('#resultMovie').hide();
+    $('#addedMovie').hide();
 }
 function searchFilm() {
+    $('#addedMovie').hide();
     title = $('#titleMovie').val();
     type = $('#typeMovie').val();
     year = $('#yearMovie').val();
@@ -36,5 +38,31 @@ function searchFilm() {
     });
 }
 function addFavourite() {
-    console.log("Added")
+
+    data_movie = {
+        "title": $('#Title').text(),
+        "year": $('#Year').text(),
+        "actors": $('#Actors').text(),
+        "awards": $('#Awards').text(),
+        "country": $('#Country').text(),
+        "dvd": $('#DVD').text(),
+        "director": $('#Director').text(),
+        "genre": $('#Genre').text(),
+        "plot": $('#Plot').text(),
+        "released": $('#Released').text(),
+        "runtime": $('#Runtime').text(),
+        "poster": $('#Poster').attr("src")
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/favourite/",
+        data: JSON.stringify(data_movie),
+        contentType: "application/json",
+        dataType: "json",
+
+        complete:(function() {
+            $('#addedMovie').show();
+            })
+    });
 }

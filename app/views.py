@@ -1,11 +1,17 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+
+from app.models import Movie
 
 
 class HomeView(View):
-
     def get(self, request):
         return render(request, "home.html")
 
@@ -34,23 +40,33 @@ class LoginView(View):
             return render(request, "registration/login.html", {"message": message})
 
 
+@method_decorator(login_required, name='dispatch')
 class SearchView(View):
     def get(self, request):
         return render(request, "search.html")
 
-    def post(self, request):
-        form_data = request.POST.dict()
-        try:
-            user = User.objects.get(username=form_data["username"])
-            return render(request, "registration/login.html")
-        except User.DoesNotExist:
-            message = "We cannot find your account. Please Sign up first."
-            return render(request, "registration/login.html", {"message": message})
 
-
+@method_decorator(csrf_exempt, name="dispatch")
+@method_decorator(login_required, name='dispatch')
 class FavouriteView(View):
     def get(self, request):
         return render(request, "favourite.html")
 
     def post(self, request):
-        pass
+        data = JSONParser().parse(request)
+        Movie.objects.create(
+            user=request.user,
+            title=data["title"],
+            year=data["year"],
+            actors=data["actors"],
+            awards=data["awards"],
+            country=data["country"],
+            dvd=data["dvd"],
+            director=data["director"],
+            genre=data["genre"],
+            plot=data["plot"],
+            released=data["released"],
+            runtime=data["runtime"],
+            poster=data["poster"],
+        )
+        return HttpResponse(status=201)
