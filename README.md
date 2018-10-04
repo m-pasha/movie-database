@@ -26,3 +26,6 @@ python manage.py runserver
 * `search/` - search movie page
 * `favourite/` - favourite movie page
 * `admin/` - Django-admin page
+
+## Docker-compose
+- for a docker please use _settings/developer.py_
