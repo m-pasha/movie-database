@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
 
 from app.views import HomeView, LoginView, SearchView, FavouriteView
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('search/', SearchView.as_view(), name='search'),
     path('favourite/', FavouriteView.as_view(), name='favourite'),
 
+    path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
 
     path('', HomeView.as_view(), name='home'),

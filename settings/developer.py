@@ -1,6 +1,6 @@
 from .base import *
 
-ALLOWED_HOSTS = ['localhost', '46.101.125.168', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '46.101.125.168', 'sp-lutsk.com', 'www.sp-lutsk.com']
 
 DATABASES = {
     'default': {
@@ -12,3 +12,4 @@ DATABASES = {
     }
 }
 
+SITE_ID = 3
