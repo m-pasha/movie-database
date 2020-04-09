@@ -1,5 +1,4 @@
 .idea/
-app/migrations/
 venv/
 static/
 settings/local.py
