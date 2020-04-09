@@ -12,12 +12,11 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r /tmp/base.txt
 
 
-WORKDIR /usr/src/docker/movie_database
-
-ADD . /usr/src/docker/movie_database
+ADD . /api/src/
 
 EXPOSE 8000
 
+WORKDIR /api/src/
 
 FROM build as dev
 ENV RQFILE=dev.txt

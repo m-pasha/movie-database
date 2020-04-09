@@ -13,10 +13,10 @@ services:
       target: dev
     env_file:
       - .env
-    command: bash -c "python3 manage.py collectstatic --noinput &&
-            python3 manage.py migrate &&
-            python3 manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python3 /api/src/manage.py collectstatic --noinput &&
+            python3 /api/src/manage.py migrate &&
+            uwsgi --ini /api/src/uwsgi.ini"
     volumes:
-      - ./backend/:/usr/src/movie_database
+      - ./backend/:/api/src/
     depends_on:
       - db
