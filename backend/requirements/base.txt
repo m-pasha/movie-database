@@ -1,0 +1,6 @@
+Django==2.2.12
+django-allauth==0.41.0
+djangorestframework==3.11.0
+
+# db
+psycopg2==2.8.5

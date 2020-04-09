@@ -1,16 +1,22 @@
-version: '3'
+version: '3.7'
 
 services:
   db:
-    image: postgres
-  web:
-    build: .
-    expose:
-      - "80"
-    command: python3 manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
+    image: postgres:12.2-alpine
+    env_file:
+      - .env
+  api:
+    restart: unless-stopped
+    build:
+      context: ./backend
+      target: dev
+    env_file:
+      - .env
+    command: bash -c "python3 manage.py collectstatic --noinput &&
+            python3 manage.py migrate &&
+            python3 manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/usr/src/docker/Movie-Database
-    ports:
-      - "80:8000"
+      - ./backend/:/usr/src/movie_database
     depends_on:
       - db
