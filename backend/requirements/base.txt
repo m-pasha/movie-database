@@ -1,6 +1,6 @@
 Django==2.2.18
 django-allauth==0.41.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 
 # db
 psycopg2==2.8.5
